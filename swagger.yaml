@@ -1,0 +1,88 @@
+openapi: 3.0.0
+info:
+  title: Distance Calculator API
+  version: 1.0.0
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /api/distance:
+    post:
+      summary: Calculate distance between coordinates
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                point1:
+                  type: object
+                  properties:
+                    lat:
+                      type: number
+                    lng:
+                      type: number
+                point2:
+                  type: object
+                  properties:
+                    lat:
+                      type: number
+                    lng:
+                      type: number
+                unit:
+                  type: string
+                  enum: [km, mi]
+                pairs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      point1:
+                        type: object
+                        properties:
+                          lat:
+                            type: number
+                          lng:
+                            type: number
+                      point2:
+                        type: object
+                        properties:
+                          lat:
+                            type: number
+                          lng:
+                            type: number
+      responses:
+        '200':
+          description: Distance calculated successfully
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+
+  /api/generate-key:
+    post:
+      summary: Generate API key
+      description: Creates and returns a unique API key
+      responses:
+        '200':
+          description: API key generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiKey:
+                    type: string
+        '500':
+          description: Server error

@@ -1,26 +1,26 @@
-🌍 Distance Calculator API
-A Node.js-based RESTful API to calculate the distance between two geographical coordinates using the Haversine formula. Built for the DevifyX Technical Assignment.
+# 🌍 Distance Calculator API
 
-🚀 Features
-RESTful endpoint to calculate distances
+A **Node.js-based RESTful API** to calculate the distance between two geographical coordinates using the Haversine formula.  
 
-Supports kilometers and miles
+---
 
-API key authentication
+## 🚀 Features
 
-Batch distance calculation
+- 🛰️ RESTful endpoint to calculate distances  
+- 📏 Supports kilometers and miles  
+- 🔐 API key authentication  
+- 🧮 Batch distance calculation  
+- 🧰 Modular, maintainable structure  
+- ⚠️ Proper error handling and validations  
+- 📄 Swagger (OpenAPI) documentation  
+- 🧪 Jest-based testing  
+- 🚫 Rate-limiting to prevent abuse  
 
-Modular, maintainable structure
+---
 
-Proper error handling and validations
+## 📁 Project Structure
 
-Swagger (OpenAPI) documentation
-
-Jest-based testing
-
-Rate-limiting to prevent abuse
-
-📁 Project Structure
+```
 ├── controllers/
 ├── middlewares/
 ├── routes/
@@ -29,72 +29,128 @@ Rate-limiting to prevent abuse
 ├── data/apiKeys.json
 ├── swagger.yaml
 ├── .env / myenv
-├── server.js
+└── server.js
+```
 
-📦 Requirements
-Node.js v14+
+---
 
-npm
+## 📦 Requirements
 
-🛠️ Setup Instructions
-Clone the repository:
+- Node.js v14+  
+- npm
+
+---
+
+## 🛠️ Setup Instructions
+
+```bash
 git clone https://github.com/ShivamDoifode/distance-api.git
 cd distance-api
 npm install
+```
 
-Create a .env or myenv file with the following content:
+Create a `.env` or `myenv` file with the following content:
+
+```
 PORT=4000
 NODE_ENV=development
+```
 
 To run tests:
+
+```bash
 npm test
+```
 
 To start the server:
+
+```bash
 node server.js
+```
 
-📘 API Usage
-🔑 Generate API Key
-POST /api/generate-key
+---
 
-Response:
+## 📘 API Usage
+
+### 🔑 Generate API Key  
+**POST** `/api/generate-key`  
+
+**Response:**
+```json
 {
-"apiKey": "your-unique-key"
+  "apiKey": "your-unique-key"
 }
+```
 
-📏 Calculate Distance
-POST /api/distance
+✅ **Trial API Key**  
+Use the key below to try the API directly without generating one:
+```bash
+ed30f6fb-d93c-4b03-9532-229ccf2284b9
+```
 
-Headers:
+---
+
+### 📏 Calculate Distance  
+**POST** `/api/distance`  
+
+**Headers:**
+```
 x-api-key: your-unique-key
+```
 
-Body (single pair):
+**Request Body (Single Pair):**
+```json
 {
-"point1": { "lat": 12.97, "lng": 77.59 },
-"point2": { "lat": 28.61, "lng": 77.20 },
-"unit": "km"
+  "point1": { "lat": 12.97, "lng": 77.59 },
+  "point2": { "lat": 28.61, "lng": 77.20 },
+  "unit": "km"
 }
+```
 
-Body (batch pairs):
+**Request Body (Batch Pairs):**
+```json
 {
-"unit": "mi",
-"pairs": [
+  "unit": "mi",
+  "pairs": [
+    {
+      "point1": { "lat": 12.97, "lng": 77.59 },
+      "point2": { "lat": 28.61, "lng": 77.20 }
+    }
+  ]
+}
+```
+
+**Response:**
+```json
 {
-"point1": { "lat": 12.97, "lng": 77.59 },
-"point2": { "lat": 28.61, "lng": 77.20 }
+  "distance": 1234.56,
+  "unit": "km"
 }
-]
-}
+```
 
-Response:
-{
-"distance": 1234.56,
-"unit": "km"
-}
+---
 
-📄 API Docs
-Swagger UI is available at:
-http://localhost:4000/api-docs
+## 📄 API Documentation
 
-🧱 Rate Limiting
-Limit: 100 requests per hour per IP
+📘 Swagger UI (hosted):  
+**[https://distance-api-fpb5.onrender.com/api-docs](https://distance-api-fpb5.onrender.com/api-docs)**
 
+---
+
+## 🧱 Rate Limiting
+
+- Limit: **100 requests per hour per IP**
+
+---
+
+## 🌐 Live Deployment
+
+- 🔗 **Frontend**: [https://distance-api-frontend.vercel.app](https://distance-api-frontend.vercel.app)  
+  → Try the distance calculator with a clean UI.
+
+- 🔗 **Swagger UI**: [https://distance-api-fpb5.onrender.com/api-docs](https://distance-api-fpb5.onrender.com/api-docs)  
+  → Explore and test the API using interactive documentation.
+
+---
+
+### 🎯 Made with 💻 by Shivam Doifode
